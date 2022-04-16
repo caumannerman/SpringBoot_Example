@@ -2,12 +2,15 @@ package com.example.springboot_example.dto;
 
 
 import com.example.springboot_example.Entity.Article;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
+@Setter
+@Getter
 public class ArticleForm {
     private String title;
     private String content;

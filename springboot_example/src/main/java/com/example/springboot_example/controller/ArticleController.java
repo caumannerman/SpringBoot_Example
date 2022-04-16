@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 public class ArticleController {
@@ -38,6 +40,24 @@ public class ArticleController {
 
     }
 
+
+
+    @GetMapping("/articles")
+    public String index(Model model){
+        // 1: 모든 Article을 가져온다!
+        List<Article> articleEntityList =  articleRepository.findAll();
+        // ArticleRepository에서 Override해서 return 타입을 바꿔줘도 된다.
+
+
+        // 2: 가져온 Article 묶음을 뷰로 전달
+        model.addAttribute("articleList", articleEntityList);
+
+        // 3: 뷰 페이지를 설정!
+        return "articles/showAll"; // articles/showAll.mustache
+
+
+    }
+
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form){
 
@@ -48,6 +68,7 @@ public class ArticleController {
         // Repository에게 Entity를 DB안에 저장하게 함 !
         Article saved = articleRepository.save(article);
         System.out.println(saved.toString());
+
         return "";
     }
 
