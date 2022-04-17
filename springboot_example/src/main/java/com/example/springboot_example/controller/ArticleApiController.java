@@ -57,7 +57,9 @@ public class ArticleApiController {
         }
 
         //업데이트 및 정상  응답
-        Article updated = articleRepository.save(article);
+        // 요청의 body로 받은 dto에 title, 혹은 content가 비어서 왔을 경우에 기존에 있던 title/content를 유지시켜야하므로 Article클래스에 patch 메서드 작성
+        former.patch(article);
+        Article updated = articleRepository.save(former);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
 
 
