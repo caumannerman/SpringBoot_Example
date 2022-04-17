@@ -12,15 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Setter
 @Getter
 public class ArticleForm {
+
+    private Long id;
     private String title;
     private String content;
 
-
-
-
-
     //dto를 Entity로
     public Article toEntity(){
-        return new Article(null, title, content);
+        return new Article(id, title, content);
     }
 }

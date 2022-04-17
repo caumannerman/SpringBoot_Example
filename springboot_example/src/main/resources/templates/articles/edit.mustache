@@ -1,6 +1,9 @@
 {{>layouts/header}}
 
-<form class="container" action="" method="post">
+<form class="container" action="/articles/update" method="post">
+    <!-- id도 같이 숨겨서 던져줌  -->
+    <input name="id" type="hidden" value="{{article.id}}"/>
+
     <div class="mb-3">
         <label class="form-label">제목</label>
         <input type="text" class="form-control" name="title" value="{{article.title}}">
