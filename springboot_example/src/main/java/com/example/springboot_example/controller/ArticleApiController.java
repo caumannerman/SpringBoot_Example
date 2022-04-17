@@ -89,6 +89,22 @@ public class ArticleApiController {
 //        Article updated = articleRepository.save(former);
 //        return ResponseEntity.status(HttpStatus.OK).body(updated);
 //    }
+
+
+
+    //PATCH
+    @PatchMapping("/api/articles/{id}")
+    public ResponseEntity<Article> update(@PathVariable Long id,
+                                          @RequestBody ArticleForm dto){
+
+
+        Article updated = articleService.update(id, dto);
+        return (updated != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(updated) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+
+    }
 //
 //    //delete
 //    @DeleteMapping("/api/articles/{id}")
@@ -108,6 +124,26 @@ public class ArticleApiController {
 //        //데이터 반환
 //        return ResponseEntity.status(HttpStatus.OK).build();
 //    }
+
+
+    //delete
+    @DeleteMapping("/api/articles/{id}")
+    public ResponseEntity<Article> delete(@PathVariable Long id){
+
+        Article deleted = articleService.delete(id);
+        return (deleted != null) ?
+                ResponseEntity.status(HttpStatus.NO_CONTENT).body(deleted):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    // 트랜잭션 -> 실패 -> 롤백!
+    @PostMapping("/api/transaction-test")
+    public ResponseEntity<List<Article>> transactionTest(@RequestBody List<ArticleForm> dtos){
+        List<Article> createdList = articleService.createArticles(dtos);
+        return (createdList != null)?
+                ResponseEntity.status(HttpStatus.NO_CONTENT).body(createdList):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 
 
 }
