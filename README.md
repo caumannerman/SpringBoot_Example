@@ -48,4 +48,4 @@ elete
 ### ArticleApiController는 request를 받아, @PathVariable, @RequestBody에서 받아온 parameter들을 Service의 메서드로 전달해주고, ResponseEntity<Article>을 결과값으로 return해주는 역할만 담당.
   
 ### ArticleService 에서 각 method들이 업무 처리, 트랜잭션 관리 등 수행하고, DB에서 처리된 결과 Entity를 return해준다.
->>> ViewTemplate을 이용한 Controller와 같은 기능이 모두 구현되었다.
+>>> ViewTemplate을 이용한 Controller에 구현된 것과 같은 기능이 모두 구현되었다.
