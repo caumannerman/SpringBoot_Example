@@ -69,7 +69,7 @@ public class ArticleController {
         Article saved = articleRepository.save(article);
         System.out.println(saved.toString());
 
-        return "";
+        return "redirect:/articles/" + saved.getId();
     }
 
 
