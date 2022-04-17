@@ -2,11 +2,10 @@ package com.example.springboot_example.controller;
 
 
 import com.example.springboot_example.Entity.Article;
+import com.example.springboot_example.dto.ArticleForm;
 import com.example.springboot_example.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +24,13 @@ public class ArticleApiController {
     @GetMapping("/api/articles/{id}")
     public Article getOneArticle(@PathVariable Long id){
         return articleRepository.findById(id).orElse(null);
+    }
+
+    //POST
+    @PostMapping("/api/articles")
+    public Article create(@RequestBody ArticleForm dto){
+        Article article = dto.toEntity();
+        return articleRepository.save(article);
     }
 
 
