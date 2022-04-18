@@ -9,7 +9,7 @@ Article(게시글) dto, Entity, Repository (JPA)를 사용하여 h2 DB에 저장
 
 > # 1.ArticleController 
 
-Ajax 없이 GetMapping, PostMapping만들 사용하여  게시글 추가, 수정, 삭제, 조회 컨트롤러 작성 
+Ajax 없이 GetMapping, PostMapping만을 사용하여  게시글 추가, 수정, 삭제, 조회 컨트롤러 작성 
 
 > 게시글 전체 조회
 >> Repository를 통해 findAll()메서드 처리 후, 찾아온 Data를 model에 등록 후 view template 뿌려줌.
@@ -31,7 +31,7 @@ Ajax 없이 GetMapping, PostMapping만들 사용하여  게시글 추가, 수정
 > 게시글 Delete
 >> 게시글 삭제 후, articles 목록 페이지로 redirect
   <img width="1507" alt="스크린샷 2022-04-17 오후 8 41 12" src="https://user-images.githubusercontent.com/75043852/163712857-fa6865ca-fc1a-40e6-87f5-d83a3ad2176d.png">
-elete
+
   
 > 게시글 생성
 >> dto로 Entity를 생성하고, Repository를 통해 DB에 저정한 뒤, 게시글 페이지로 redirect한다.
