@@ -49,3 +49,8 @@ Ajax 없이 GetMapping, PostMapping만을 사용하여  게시글 추가, 수정
   
 ### ArticleService 에서 각 method들이 업무 처리, 트랜잭션 관리 등 수행하고, DB에서 처리된 결과 Entity를 return해준다.
 >>> ViewTemplate을 이용한 Controller에 구현된 것과 같은 기능이 모두 구현되었다.
+
+  
+> # 3. Text코드 작성 
+  
+>> 
