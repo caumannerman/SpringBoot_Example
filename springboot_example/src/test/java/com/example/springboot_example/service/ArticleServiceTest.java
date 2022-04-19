@@ -60,5 +60,22 @@ class ArticleServiceTest {
         assertEquals(expected, article);
     }
 
-   
+    @Test
+    void create_성공____title과content만_있는_dto_입력() {
+
+        Long id = -1L;
+
+        //예상
+        String title = "";
+        String content = "";
+        ArticleForm dto = new ArticleForm(null, title, content);
+        Article expected = new Article(4L, title, content);
+
+
+        //실제
+        Article article = articleService.create(dto);
+        //비교
+        assertEquals(expected.toString(), article.toString());
+    }
+
 }
