@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+        version="2.0">
+
+    <!-- name에 있는 이름의 메서드는 아래의 query를 수행하고, 그 결과값은 result-class의 형태를 가진다-->
+    <named-native-query name="Comment.findByNickname"
+        result-class="com.example.springboot_example.Entity.Comment">
+        <query>
+            <![CDATA[
+SELECT * FROM comment WHERE nickname = :nickname
+]]>
+        </query>
+    </named-native-query>
+</entity-mappings>
