@@ -5,6 +5,7 @@ import com.example.springboot_example.dto.ArticleForm;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +62,7 @@ class ArticleServiceTest {
     }
 
     @Test
+    @Transactional
     void create_성공____title과content만_있는_dto_입력() {
 
         Long id = -1L;
@@ -79,6 +81,7 @@ class ArticleServiceTest {
     }
 
     @Test
+    @Transactional
     void create_실패____id가_포함된_dto_입력(){
 
         //예상
