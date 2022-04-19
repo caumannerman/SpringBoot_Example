@@ -1,6 +1,7 @@
 package com.example.springboot_example.service;
 
 import com.example.springboot_example.Entity.Article;
+import com.example.springboot_example.dto.ArticleForm;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,4 +32,33 @@ class ArticleServiceTest {
         //비교
         assertEquals(expected.toString(), articles.toString());
     }
+
+    @Test
+    void getOneArticle_성공____존재하는_id_입력() {
+        Long id = 1L;
+        //예상
+        Article expected = new Article(id, "가가가가", "1111");
+
+        //실제
+        Article article = articleService.getOneArticle(id);
+        //비교
+        assertEquals(expected.toString(), article.toString());
+    }
+
+    @Test
+    void getOneArticle_실패____존재하지않는_id_입력() {
+
+        //존재하지 않는 id
+        Long id = -1L;
+
+        //예상
+        Article expected = null; // id를 찾지 못하면 우리는 null을 반환화도록 작성해놓았으므로.
+
+        //실제
+        Article article = articleService.getOneArticle(id);
+        //비교
+        assertEquals(expected, article);
+    }
+
+   
 }
