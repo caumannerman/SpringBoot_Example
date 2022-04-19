@@ -52,5 +52,8 @@ Ajax 없이 GetMapping, PostMapping만을 사용하여  게시글 추가, 수정
 
   
 > # 3. Text코드 작성 
-  
+  성공, 실패의 경우로 나누어 Service에 작성한 메서드들에 대하여 아래와 같이 테스트 코드를 작성하고 실행해보았다.
+  여러 Test를 동시에 수행할 경우, DB가 변경되어 뒷 쪽 Test에서 예상과 다른 결과가 나오는 것을 방지하기 위해 @Transactional을 적용해주었다.
+  <img width="511" alt="스크린샷 2022-04-19 오후 4 47 20" src="https://user-images.githubusercontent.com/75043852/163952487-a143773f-7661-4a86-a5cf-2b5b363d2724.png">
+
 >> 
