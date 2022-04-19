@@ -56,4 +56,29 @@ Ajax 없이 GetMapping, PostMapping만을 사용하여  게시글 추가, 수정
   여러 Test를 동시에 수행할 경우, DB가 변경되어 뒷 쪽 Test에서 예상과 다른 결과가 나오는 것을 방지하기 위해 @Transactional을 적용해주었다.
   <img width="511" alt="스크린샷 2022-04-19 오후 4 47 20" src="https://user-images.githubusercontent.com/75043852/163952487-a143773f-7661-4a86-a5cf-2b5b363d2724.png">
 
->> 
+> # 4. 댓글 ( Comment )테이블 생성 ( 게시글과 1:N 관계 )
+CrudRepository를 확장한 PagingAndSortingRepository를 또 한 번 확장한 JpaRepository로 CommentRepository를 구성하였다.
+ - 1. JpaRepository는 CRUD기능 뿐 아니라 일정 페이지의 조회, Sorting 가능 ...
+
+> ### 4.1. CommentJpaRepository 구현 내용
+  Jpa가 기본적으로 제공해주는 get방식에 없는 기능들은 ( ex. nicmname이 "Yang"인 사용자가 단 댓글 모두 select) 쿼리문을 작성하여 수행해야하는데,  두가지 방식으로 수행하였다.
+  - 1. @Query어노테이션을 달아 nativaQuery로 DB에서 쿼리를 수행하여 Entity(혹은 Entity들)을 받아오는 방식
+  
+  <img width="650" alt="스크린샷 2022-04-19 오후 6 31 55" src="https://user-images.githubusercontent.com/75043852/163974508-8d104281-160b-4f54-8173-3ee1e4cefdd2.png">
+
+  - 1. resources/META-INF/orm.xml 파일에서 <named-native-query>의 name의 메서드 이름과 <query>를 연결해주고, 해당 메서드 이름은 이렇게 연결된 쿼리를 수행하고, result-class에 지정된 클래스로 결과를 반환하도록 지정해주는 방식
+  
+  <img width="650" alt="스크린샷 2022-04-19 오후 6 31 26" src="https://user-images.githubusercontent.com/75043852/163974416-b10f9036-0333-496f-8f09-941e93748553.png">
+  
+> ### 4.2 @DataJpaTest와 @SpringBootTest 비교
+  
+  댓글Entity에 사용하기 위해, Comment Repository를 JpaRepository로 구현하였다.
+ 
+>> @DataJpaTest 
+  - 1. 오직 Jpa 컴포넌트들만을 테스트하기 위한 어노테이션.
+  - 1. full-auto config를 해제하고 JPA테스트와 연관된 config만 적용 
+>> @SpringBootTest
+  - 1. full application config를 로드해서 통합 테스트를 진행 하기 위한 annotation이다. 
+  - 1. 상대적으로 무겁다.
+  - 1. 테스트마다 DB가 롤백디지 않기 때문에 @Transactional을 추가로 달아주어야한다!
+
