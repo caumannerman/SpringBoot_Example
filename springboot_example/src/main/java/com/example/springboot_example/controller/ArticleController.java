@@ -50,7 +50,6 @@ public class ArticleController {
         List<Article> articleEntityList =  articleRepository.findAll();
         // ArticleRepository에서 Override해서 return 타입을 바꿔줘도 된다.
 
-
         // 2: 가져온 Article 묶음을 뷰로 전달
         model.addAttribute("articleList", articleEntityList);
 
