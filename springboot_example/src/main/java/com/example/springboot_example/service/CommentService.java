@@ -1,6 +1,7 @@
 package com.example.springboot_example.service;
 
 
+import com.example.springboot_example.Entity.Article;
 import com.example.springboot_example.Entity.Comment;
 import com.example.springboot_example.dto.CommentDto;
 import com.example.springboot_example.repository.ArticleRepository;
@@ -8,6 +9,7 @@ import com.example.springboot_example.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +40,22 @@ public class CommentService {
         // 반환
         return dtos;
 
+    }
+
+    @Transactional // DB를 건드리고있기 때문에!!  오류에 대비~
+    public CommentDto create(Long articleId, CommentDto dto) {
+        //게시글 조회 및 예외 발생
+        // 받아온 articleID가 유효하지 않은 경우
+        Article article = articleRepository.findById(articleId).orElseThrow(() -> new IllegalArgumentException("댓글 생성 실패! 대상 게시글이 없습니다."));
+
+        //댓글 Entity 생성
+        //static 메서드 사용해서 Comment 객체 생성 - 받아온 dto의 내용을 해당 article에 달린 COmment가 되도록 만들어준다
+        Comment comment = Comment.createComment(dto,article);
+
+        //댓글 Entity를 DB로 저장
+        Comment created = commentRepository.save(comment);
+
+        //DTO로 변경하여 반환
+        return CommentDto.createCommentDto(created);
     }
 }

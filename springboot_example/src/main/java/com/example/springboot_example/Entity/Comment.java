@@ -1,6 +1,7 @@
 package com.example.springboot_example.Entity;
 
 
+import com.example.springboot_example.dto.CommentDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,4 +27,20 @@ public class Comment {
 
     @Column
     private String body;
+
+    public static Comment createComment(CommentDto dto, Article article) {
+        // 예외 처리
+        if (dto.getId() != null)
+            throw new IllegalArgumentException("댓글 생성 실패! 댓글의 id가 없어야합니다!");
+        if (dto.getArticleId() != article.getId())
+            throw new IllegalArgumentException("댓글 생성 실패! 게시글의 id가 잘못되었습니다!");
+
+        //엔티티 생성 및 반환
+        return new Comment(
+                dto.getId(),
+                article,
+                dto.getNickname(),
+                dto.getBody()
+        );
+    }
 }
