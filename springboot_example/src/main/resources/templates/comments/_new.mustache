@@ -24,3 +24,40 @@
     </div>
 </div>
 
+<script>
+    {
+        // 댓글 생성 버튼 변수화(id가 comment-create-btn인 대상)
+        const commentCreateBtn = document.querySelector("#comment-create-btn");
+
+        //버튼 클릭 이벤트를 감지!
+        commentCreateBtn.addEventListener("click", function(){
+            // 새 댓글 객체 생성
+            //querySelector로 id를 통해 가져오고, value로 그 안에 입력된 값을 가져옴
+            const comment = {
+                nickname: document.querySelector("#new-comment-nickname").value,
+                body:  document.querySelector("#new-comment-body").value,
+                article_id:  document.querySelector("#new-comment-article-id").value
+            };
+
+            //댓글 객체 출력
+            console.log(comment);
+
+            // fetch()
+            const url = "/api/articles/" + comment.article_id + "/comments";
+            fetch(url, {
+                method: "post", //post요청
+                body: JSON.stringify(comment), // comment JS객체를 JSON으로 변경하여 보냄
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(response => {
+                // http 응답 코드에 따른 메시지
+                const msg = (response.ok) ? "댓글이 등록되었습니다." : "댓글 등록 실패..!";
+                alert(msg);
+                //현재 페이지 새로고침
+                window.location.reload();
+            });
+
+        });
+    }
+</script>
