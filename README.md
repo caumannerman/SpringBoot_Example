@@ -59,6 +59,7 @@ Ajax 없이 GetMapping, PostMapping만을 사용하여  게시글 추가, 수정
 > # 4. 댓글 ( Comment )테이블 생성 ( 게시글과 1:N 관계 )
 CrudRepository를 확장한 PagingAndSortingRepository를 또 한 번 확장한 JpaRepository로 CommentRepository를 구성하였다.
  - 1. JpaRepository는 CRUD기능 뿐 아니라 일정 페이지의 조회, Sorting 가능 ...
+  주요 annotation @ManyToOne , @JoinColumn, @JsonProperty
 
 > ### 4.1. CommentJpaRepository 구현 내용
   Jpa가 기본적으로 제공해주는 get방식에 없는 기능들은 ( ex. nicmname이 "Yang"인 사용자가 단 댓글 모두 select) 쿼리문을 작성하여 수행해야하는데,  두가지 방식으로 수행하였다.
