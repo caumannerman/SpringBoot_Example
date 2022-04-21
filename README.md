@@ -2,6 +2,7 @@
 
 SpringBoot 개념을 잡기 위한 토이 프로젝트
 Article(게시글) dto, Entity, Repository (JPA)를 사용하여 h2 DB에 저장 
+Comment(댓글)을 Article과 @ManyToOne의 관계로 만들고, 댓글 CRUD 수행 
 
 - 1. mustache view template을 사용하여 api통신을 시각화 하며 테스트. (Controller)
 - 2. RestController를 사용하여 json으로 데이터를 주고받도록 Rest API 구현 
@@ -82,4 +83,11 @@ CrudRepository를 확장한 PagingAndSortingRepository를 또 한 번 확장한 
   - 1. full application config를 로드해서 통합 테스트를 진행 하기 위한 annotation이다. 
   - 1. 상대적으로 무겁다.
   - 1. 테스트마다 DB가 롤백디지 않기 때문에 @Transactional을 추가로 달아주어야한다!
+  
+> # 5. 댓글 표시, 작성 UI 구성, JS와 fetch()를 사용한 REST API 호출 
+  
+  - 1. bootstrap을 사용하여 댓글 UI 구성 
+  - 1. querySelector, addEventListener, fetch를 사용한 CRUD를 JavaScript로 수행 
+  
+  <img width="700" alt="스크린샷 2022-04-21 오후 4 09 05" src="https://user-images.githubusercontent.com/75043852/164395246-95df4496-290b-4bb6-85e3-2ea22741a024.png">
 
